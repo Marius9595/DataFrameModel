@@ -3,7 +3,6 @@ import unittest
 import pandas as pd
 from pandera.errors import SchemaError
 
-from Errors.errors import *
 from test.dataframemodel_example import *
 
 
