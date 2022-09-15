@@ -1,8 +1,11 @@
 
-.. image:: assets/logo.png
-  :width: 300
-  :alt: DataFrameModel
+.. figure:: assets/logo.png
   :align: center
+  :scale: 50%
+  :alt: DataFrameModel
+
+  
+
 
 It is an approach to: 
 
