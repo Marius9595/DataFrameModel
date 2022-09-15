@@ -2,22 +2,7 @@ from re import match
 from pandas import DataFrame
 from pandera import DataFrameSchema
 
-from Errors.errors import *
-
-
-def _verify_there_are_correct_column_declarations(schema):
-    are_not_column_declarations = len(schema.columns) == 0
-    if are_not_column_declarations:
-        raise NoColumnDeclarationsFound()
-
-
-def _check_column_mismatches(data, schema):
-    mismatch = data.columns.difference(schema.columns)
-    if not (len(mismatch) == 0):
-        raise ColumnsMismatch(
-            f"These columns names are not declared in schema:\n"
-            f"{mismatch.tolist()}\n"
-        )
+from src.Errors.errors import *
 
 
 class DataFrameModel:
@@ -27,9 +12,22 @@ class DataFrameModel:
 
     def __init__(self, data: DataFrame):
         schema = DataFrameSchema(self._schema_from_class())
-        _verify_there_are_correct_column_declarations(schema)
-        _check_column_mismatches(data, schema)
+        self._verify_there_are_correct_column_declarations(schema)
+        self._check_column_mismatches(data, schema)
         self._data = schema.validate(data)
+
+    def _verify_there_are_correct_column_declarations(self, schema):
+        are_not_column_declarations = len(schema.columns) == 0
+        if are_not_column_declarations:
+            raise NoColumnDeclarationsFound()
+
+    def _check_column_mismatches(self, data, schema):
+        mismatch = data.columns.difference(schema.columns)
+        if not (len(mismatch) == 0):
+            raise ColumnsMismatch(
+                f"These columns names are not declared in schema:\n"
+                f"{mismatch.tolist()}\n"
+            )
 
     @classmethod
     def _schema_from_class(cls):
