@@ -17,7 +17,7 @@ dataframe that will be wrapped. As convention, each column
 declaration have to start with 'col_'. This one has not to
 match with name of column, but it is easier to handle encapsulated
 logic in class if these have the similar names.
- 
+
 * Implementation example::
 
        class CompanySales(DataFrameModel):

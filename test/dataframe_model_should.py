@@ -3,8 +3,10 @@ import unittest
 import pandas as pd
 from pandera.errors import SchemaError
 
-from src.Errors.errors import *
 from test.dataframemodel_example import *
+
+from Errors.errors import *
+
 
 
 class DataframeModelShould(unittest.TestCase):

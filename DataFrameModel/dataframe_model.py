@@ -2,7 +2,7 @@ from re import match
 from pandas import DataFrame
 from pandera import DataFrameSchema
 
-from src.Errors.errors import *
+from Errors.errors import *
 
 
 class DataFrameModel:

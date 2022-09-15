@@ -1,4 +1,4 @@
-from src.DataFrameModel.dataframe_model import DataFrameModel
+from DataFrameModel.dataframe_model import DataFrameModel
 from pandera import Column
 
 
