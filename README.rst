@@ -15,7 +15,7 @@ It is an approach to:
 3) Centralize column names to gain consistency in accessing data
 4) Validate easily data
 
-In concrete, it consists in a class wrapper of DataFrame. This one is passed by contructor that validate the contract with column declarations.
+In concrete, it consists in a class wrapper of DataFrames. This one is passed by contructor that validate the contract with column declarations.
 
 
 This approach uses `Pandera <https://pandera.readthedocs.io/en/stable/>`_ ,
@@ -25,7 +25,7 @@ and Column class to declare name and typing of each column of the
 dataframe that will be wrapped. I decided as convention, each column
 declaration have to start with 'col_'. This one has not to
 match with name of column, but it is easier to handle encapsulated
-logic in class if these have the similar names (maybe, it will have to match in future improments).
+logic in class if these have the similar names (maybe, it will have to match in future improvements).
 
 * Implementation example::
 
