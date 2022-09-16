@@ -5,21 +5,27 @@
   :alt: DataFrameModel
 
   
-
+What is DataFrameModel?
+---------
 
 It is an approach to: 
 
 1) Gain in expressiveness, explicitness and take advantage of python hints.
-2) Encapsulate operations and columns references
+2) Encapsulate recurring operations
+3) Centralize column names to gain consistency in accessing data
+4) Validate easily data
+
+In concrete, it consists in a class wrapper of DataFrame. This one is passed by contructor that validate the contract with column declarations.
+
 
 This approach uses `Pandera <https://pandera.readthedocs.io/en/stable/>`_ ,
-an Extension of Pandas' Ecosystem to validate Dataframes.
+an Extension of Pandas' Ecosystem to validate Dataframes as core.
 The DataFrameSchema is the element used to build DataFrameModel
-and Column() to declare name and typing of each column of the
-dataframe that will be wrapped. As convention, each column
+and Column class to declare name and typing of each column of the
+dataframe that will be wrapped. I decided as convention, each column
 declaration have to start with 'col_'. This one has not to
 match with name of column, but it is easier to handle encapsulated
-logic in class if these have the similar names.
+logic in class if these have the similar names (maybe, it will have to match in future improments).
 
 * Implementation example::
 
@@ -31,7 +37,7 @@ logic in class if these have the similar names.
            col_department_2 = Column(name='department one, dtype=float)
             
            def total_sales_of_company(self) -> pd.Series:
-                return self._data[
+                return self.data[
                 self.col_department_1.name, self.department_2.name
                 ].sum(axis=1)
                
@@ -87,16 +93,32 @@ along your code:
 
 * Usage example::
 
-       >> tenerife = TenerifeElectricSystem(pd.DataFrame(some_today_data))
-       >> renewables_today_production = tenerife[tenerife.renewables].sum()
+       >> data = pd.DataFrame(some_today_data_from_tenerife)
+       >> tenerife = TenerifeElectricSystem(data)
+       >> renewables_today_production = tenerife.data[tenerife.renewables].sum()
+       
 
 
-This last example is core of motivation to develop DataFrameModel
+This last example is the core of motivation to develop DataFrameModel
 because this gives to data manipulation consistency and adds semantic.
 
 In addition, Pandera provides `Checkers <https://pandera.readthedocs.io/en/stable/checks.html>`_
 for each column to gain integrity.  It can be interesting in ETLs processes when all transformations
-were done and you would like a quality data.
+were done and you would like a quality data. This consists in functions written by self or it can be used the pre-built checkings of pandera.
+Examples from its documentation are ilustratives.
 
-I wrote tests in order to cover the behaviour as I think it should work
-at same time these express the specifications of DataFrameModel.
+Testing
+------
+
+I wrote tests in order to cover the DataFrameModel behaviour as I think it should work
+at same time these express the specifications of DataFrameModel. 
+I would be grateful for reciving feedback if some cases are not covered
+
+
+Installation
+---------
+
+    ::
+      
+       > pip install git:https://github.com/Marius9595/DataFrameModel.git
+    
