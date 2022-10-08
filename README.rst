@@ -120,5 +120,5 @@ Installation
 
     ::
       
-       > pip install git:https://github.com/Marius9595/DataFrameModel.git
+       > pip install git+https://github.com/Marius9595/DataFrameModel.git
     
