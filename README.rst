@@ -114,6 +114,9 @@ I wrote tests in order to cover the DataFrameModel behaviour as I think it shoul
 at same time these express the specifications of DataFrameModel. 
 I would be grateful for reciving feedback if some cases are not covered
 
+A Real example of its use
+--------------------
+`DataFramodelUseCaseExample <https://github.com/Marius9595/DataFrameModelUseCaseExample/tree/master>`_
 
 Installation
 ---------
